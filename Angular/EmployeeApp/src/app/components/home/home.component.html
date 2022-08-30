@@ -1,0 +1,45 @@
+<!--
+filtros: fecha inicial, fecha final, codigo cliente, nombre cliente, numero factura, departamento y ciudad
+-->
+<br>
+<div class="row">
+    <div class="input-field col s3">
+        <input type="text" 
+        id="search" 
+        [(ngModel)]="filterargs.employee_name" 
+        /> 
+        <label class="active" for="search">Filter</label>
+    </div>
+</div>
+
+<div class="homeCard">
+    <h4 class="center">Facturas.</h4>
+    <div class="row">
+        <table>
+            <thead>
+                <tr >
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Salario</td>
+                    <td>Edad</td>
+                    <!-- <td>Image</td> -->
+                    <td>Salario Anual</td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let item of employees | myfilter:filterargs" (click)="seleccionarCampo(item.id)">
+                    <td>{{item.id}}</td>
+                    <td>{{item.employee_name | capitalize}}</td>
+                    <td>{{item.employee_salary | currency}}</td>
+                    <td>{{item.employee_age}}</td>
+                    <td>{{item.employee_anual_salary | currency}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- <p>{{facturas | json}}</p> -->
+    <h5>Datos del Cliente Seleccionado: </h5>
+    <p *ngIf="employeeSearch.id != 0"> {{employeeSearch | json}}</p>
+    <p *ngIf="employeeSearch.id == 0">No se ha seleccionado Ningun Empleado</p>
+</div>
